@@ -1,0 +1,73 @@
+@host = http://localhost:3000
+@hostName=http://localhost:3000/api/v1
+
+### access API Docs
+GET {{host}}/public/docs.md
+
+### get test
+GET {{hostName}}
+
+### get Products with pagination
+GET {{hostName}}/product?page=6&limit=20
+
+### get product by id
+GET {{hostName}}/product/102
+
+### post product with upload image
+POST {{hostName}}/product
+Content-Type: multipart/form-data; boundary=IamSplitter
+
+--IamSplitter
+Content-Disposition: form-data; name="image"; filename="test.png"
+Content-Type: image/png
+
+< ./test.png
+--IamSplitter
+Content-Disposition: form-data; name="name"
+
+Test
+--IamSplitter
+Content-Disposition: form-data; name="decs"
+
+Test description
+--IamSplitter
+Content-Disposition: form-data; name="category_id"
+
+1
+--IamSplitter--
+
+
+### put product with upload image
+PUT {{hostName}}/product/102
+Content-Type: multipart/form-data; boundary=IamSplitter
+
+--IamSplitter
+Content-Disposition: form-data; name="image"; filename="test.png"
+Content-Type: image/png
+
+< ./test.png
+--IamSplitter
+Content-Disposition: form-data; name="name"
+
+Test
+--IamSplitter
+Content-Disposition: form-data; name="decs"
+
+Test description
+--IamSplitter
+Content-Disposition: form-data; name="category_id"
+
+1
+--IamSplitter--
+
+### delete product by id
+DELETE {{hostName}}/product/108
+
+
+
+//get public produk image if exist and product image not url
+@imageName =image-1729606456187-99434430.png
+### get public image
+GET {{host}}/public/image/{{imageName}}
+
+
